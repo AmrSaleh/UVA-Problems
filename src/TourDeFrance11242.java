@@ -1,84 +1,108 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TourDeFrance11242 {
 
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int front, rear;
-		String[] splittedLine = br.readLine().split(" ");
+		 BufferedReader br = new BufferedReader(new
+		 InputStreamReader(System.in));
+		
+		 int front, rear;
+		 String[] splittedLine = br.readLine().split(" ");
+		
+		 front = Integer.parseInt(splittedLine[0]);
+		
+		 int[] sprigotsFront;
+		 int[] sprigotsRear;
+		 double[] results;
+		 int n;
+		 String output;
+		 double ratio, temp;
+		
+		 while (front != 0) {
+		
+		 rear = Integer.parseInt(splittedLine[1]);
+		
+		 sprigotsFront = new int[front];
+		 sprigotsRear = new int[rear];
+		 results = new double[front*rear];
+		
+		 splittedLine = br.readLine().split(" ");
+		 for (int i = 0; i < splittedLine.length; i++) {
+		 sprigotsFront[i] = Integer.parseInt(splittedLine[i]);
+		 }
+		
+		 splittedLine = br.readLine().split(" ");
+		 for (int i = 0; i < splittedLine.length; i++) {
+		 sprigotsRear[i] = Integer.parseInt(splittedLine[i]);
+		 }
+		
+		 n = 0;
+		 for (int i = 0; i < sprigotsFront.length; i++) {
+		
+		 for (int j = 0; j < sprigotsRear.length; j++) {
+		 results[n] =(double)sprigotsRear[j]/ (double)sprigotsFront[i] ;
+		 n++;
+		 }
+		 }
+		
+		
+		 Arrays.sort(results);
+		
+		
+		
+		 ratio = -1.0;
+		 for (int i = 0; i < results.length-1; i++) {
+		
+		
+		 temp = (double) results[i+1] / (double) results[i];
+		 if (temp > ratio) {
+		 ratio = temp;
+		 }
+		
+		
+		 }
+		
+		 // System.out.println(Arrays.toString(results));
+		 // System.out.printf("%.2f\n", ratio);
+		
+		 ratio = Math.round(ratio * 100.0) / 100.0;
+		 output = ratio + "";
+		 if (output.length() - 1 - output.indexOf('.') == 1) {
+		 output += "0";
+		 }
+		
+		 System.out.println(output);
+		
+		 // System.out.println("---");
+		
+		 splittedLine = br.readLine().split(" ");
+		 front = Integer.parseInt(splittedLine[0]);
+		 }
 
-		front = Integer.parseInt(splittedLine[0]);
+		// Here Testing passing by reference when passing objects as parameters
+		
+		
+//		List<Integer> outerList = new ArrayList<Integer>();
+//		outerList.add(4);
+//		outerList.add(5);
+//		outerList.add(6);
+//		MyList outer = new MyList(outerList);
+//		outerList.clear();
+//		System.out.println(outer.innerList.toString());
+	}
 
-		int[] sprigotsFront;
-		int[] sprigotsRear;
-		double[] results;
-		int n;
-		String output;
-		double ratio, temp;
+}
 
-		while (front != 0) {
+class MyList {
+	List<Integer> innerList;
 
-			rear = Integer.parseInt(splittedLine[1]);
-
-			sprigotsFront = new int[front];
-			sprigotsRear = new int[rear];
-			results = new double[front*rear];
-
-			splittedLine = br.readLine().split(" ");
-			for (int i = 0; i < splittedLine.length; i++) {
-				sprigotsFront[i] = Integer.parseInt(splittedLine[i]);
-			}
-
-			splittedLine = br.readLine().split(" ");
-			for (int i = 0; i < splittedLine.length; i++) {
-				sprigotsRear[i] = Integer.parseInt(splittedLine[i]);
-			}
-
-			n = 0;
-			for (int i = 0; i < sprigotsFront.length; i++) {
-				
-				for (int j = 0; j < sprigotsRear.length; j++) {
-					results[n] =(double)sprigotsRear[j]/ (double)sprigotsFront[i] ;
-					n++;
-				}
-			}
-
-			
-				Arrays.sort(results);
-			
-			
-
-			ratio = -1.0;
-			for (int i = 0; i < results.length-1; i++) {
-				
-				
-					temp = (double) results[i+1] / (double) results[i];
-					if (temp > ratio) {
-						ratio = temp;
-					}
-				
-				
-			}
-
-//			System.out.println(Arrays.toString(results));
-//			System.out.printf("%.2f\n", ratio);
-			
-			ratio = Math.round(ratio * 100.0) / 100.0;
-			output = ratio + "";
-			if (output.length() - 1 - output.indexOf('.') == 1) {
-				output += "0";
-			}
-
-			System.out.println(output);
-			
-//			System.out.println("---");
-
-			splittedLine = br.readLine().split(" ");
-			front = Integer.parseInt(splittedLine[0]);
-		}
+	MyList(List<Integer> list) {
+		innerList = list;
 	}
 }

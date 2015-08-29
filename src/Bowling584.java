@@ -27,6 +27,7 @@ public class Bowling584 {
 			frames = 0;
 			incrementFrameFlag = 0;
 			// upcomingCalculated = 0;
+			
 			for (int i = 0; i < scores.length; i++) {
 
 				if (frames < 10) {
